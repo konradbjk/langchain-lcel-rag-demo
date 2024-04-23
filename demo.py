@@ -46,10 +46,10 @@ def extract_article(article):
   
     return docs_transformed
 
-def fetch_article(url):
-    print(url)
+def fetch_article(website):
+    print(website)
     try:
-        loader = AsyncHtmlLoader([url])
+        loader = AsyncHtmlLoader([website])
         html = loader.load() # returns a list
         ## Compare regular BS4 output with Document Transformer
         # soup = BeautifulSoup(html[0].page_content, 'html.parser')
@@ -57,7 +57,7 @@ def fetch_article(url):
         # text1 = article.get_text()
         text2 = extract_article(html)
     except IndexError:
-        print(f"Problem fetching page content")
+        print("Problem fetching page content")
         
     # return text1, text2
     return text2
@@ -69,7 +69,7 @@ content2 = fetch_article(url)
 ## Compare Content1 and content2
 # pprint(f"content1: \n{content1} \n\n\n\n content2: \n{content2[0].page_content}")
 
-## play around with values on 
+## play around with values on
 ## https://langchain-text-splitter.streamlit.app/
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=400,
